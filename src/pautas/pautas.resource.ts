@@ -8,6 +8,9 @@ export class PautaDTO {
   descricao: string;
   status: string;
 }
+export class NovaSessaoDTO {
+  minutos: number;
+}
 
 export function toDomain(dto: CriarPautaDTO): Pauta {
   const pauta = new Pauta();
