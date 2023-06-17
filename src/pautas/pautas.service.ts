@@ -37,7 +37,7 @@ export class PautasService {
     pauta: Pauta,
     minutos: number = PautasService.TEMPO_PADRAO_PAUTA,
   ): Promise<boolean> {
-    if (!pauta.isPossivelIniciarSessao) {
+    if (!pauta.isPossivelIniciarSessao()) {
       return false;
     }
 
