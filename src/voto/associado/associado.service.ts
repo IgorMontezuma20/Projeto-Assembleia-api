@@ -8,4 +8,21 @@ export class AssociadoService {
     @Inject('ASSOCIADO_REPOSITORY')
     private readonly associadoRepository: Repository<Associado>,
   ) {}
+
+  async getByCpf(cpf: string): Promise<Associado> {
+    return await this.associadoRepository.findOne({
+      where: { cpf: cpf },
+    });
+  }
+
+  async recuperarOuCadastrar(cpf: string): Promise<Associado> {
+    const associadoEncontrado: Associado = await this.getByCpf(cpf);
+    if (associadoEncontrado) {
+      return associadoEncontrado;
+    }
+    const novoAssociado = new Associado();
+    novoAssociado.cpf = cpf;
+    await this.associadoRepository.save(novoAssociado);
+    return novoAssociado;
+  }
 }
