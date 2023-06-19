@@ -1,5 +1,7 @@
+import { IsNotEmpty } from 'class-validator';
 import { Pauta } from './pauta.entity';
 export class CriarPautaDTO {
+  @IsNotEmpty({ message: 'Descrição é um campo obrigatório!' })
   descricao: string;
 }
 
