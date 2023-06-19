@@ -32,9 +32,13 @@ export class VotoController {
       registroVotoDTO.opcaoVoto,
     );
 
-    //if (result.isError()) {
-    //  return response.status().send(new ErrorResponse(''));
-    //}
+    if (result.isError()) {
+      const error = result.error;
+
+      return response
+        .status(error.statusCode)
+        .send(new ErrorResponse(error.message));
+    }
 
     return response.status(HttpStatus.ACCEPTED).send();
   }
