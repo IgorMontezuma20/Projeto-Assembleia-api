@@ -20,7 +20,7 @@ export class VotoService {
     cpf: string,
     opcaoVoto: OpcaoVoto,
   ): Promise<Result<Voto, HttpError>> {
-    if (!pauta.isIniciada) {
+    if (!pauta.isIniciada()) {
       return new Result(
         null,
         new HttpError(
