@@ -9,7 +9,9 @@ async function bootstrap() {
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Assembleia API')
-    .setDescription('Api do projeto Assembleia.')
+    .setDescription(
+      'Api do projeto Assembléia. Api com utilização de micro-serviços para realização de votos em uma Assembléia.',
+    )
     .setVersion('1.0.0')
     .setContact(
       'Igor Montezuma de Miranda',

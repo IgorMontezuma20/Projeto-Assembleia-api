@@ -18,14 +18,17 @@ import {
 } from './pautas.resource';
 import { Pauta } from './pauta.entity';
 import { ErrorResponse } from 'src/common/erro.resource';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
 @Controller('pautas')
+@ApiTags('Pautas')
 export class PautasController {
   private readonly logger = new Logger(PautasController.name);
 
   constructor(private readonly pautasService: PautasService) {}
 
   @Post()
+  @ApiOperation({ description: 'Criar uma Pauta' })
   async save(@Body() pauta: CriarPautaDTO, @Res() response: Response) {
     this.logger.log('Criando nova pauta');
 
@@ -46,12 +49,14 @@ export class PautasController {
   }
 
   @Get()
+  @ApiOperation({ description: 'Listar todas as Pautas' })
   async list(@Res() response: Response) {
     const result = await this.pautasService.findAll();
     return response.status(HttpStatus.OK).send(result.map(toRepresentation));
   }
 
   @Post(':id/sessao')
+  @ApiOperation({ description: 'Criar uma sessão' })
   async createSession(
     @Param('id') id: string,
     @Body() novaSessaoDto: NovaSessaoDTO,

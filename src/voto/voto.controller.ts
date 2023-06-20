@@ -4,8 +4,10 @@ import { PautasService } from 'src/pautas/pautas.service';
 import { VotoService } from './voto.service';
 import { ResgistroVotoDTO } from './voto.resource';
 import { ErrorResponse } from 'src/common/erro.resource';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('pautas/:id/voto')
+@ApiTags('Votos')
 export class VotoController {
   constructor(
     private readonly pautasService: PautasService,
@@ -13,6 +15,7 @@ export class VotoController {
   ) {}
 
   @Post()
+  @ApiOperation({ description: 'Registrar um voto' })
   async registerVote(
     @Param('id') pautaId: string,
     @Body() registroVotoDTO: ResgistroVotoDTO,

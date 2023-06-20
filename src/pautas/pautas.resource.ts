@@ -1,16 +1,27 @@
 import { IsNotEmpty } from 'class-validator';
 import { Pauta } from './pauta.entity';
+import { ApiProperty } from '@nestjs/swagger';
 export class CriarPautaDTO {
   @IsNotEmpty({ message: 'Descrição é um campo obrigatório!' })
+  @ApiProperty({
+    name: 'descricao',
+    example: 'Votação para aumento de condomínio.',
+  })
   descricao: string;
 }
 
 export class PautaDTO {
+  @ApiProperty()
   id: string;
+
+  @ApiProperty()
   descricao: string;
+
+  @ApiProperty()
   status: string;
 }
 export class NovaSessaoDTO {
+  @ApiProperty({ default: 10 })
   minutos: number;
 }
 
